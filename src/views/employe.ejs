@@ -1,0 +1,38 @@
+<%- include('partials/_htmlhead'); -%>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <a href="/add" class="btn btn-primary">Add</a>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Job</th>
+            <th scope="col">like node</th>
+            <th scope="col">Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+        <% employes.forEach(function(item) { %>
+          <tr>
+            <td><%= item.employe_id %></td>
+            <td><%= item.name %></td>
+            <td><%= item.last_name %></td>
+            <td><%= item.job %></td>
+            <td><%= item.like_node ? 'Yes' : 'No' %></td>
+            <td>
+              <a href="/edit/<%= item.employe_id %>">Editar</a> |
+              <form action="/delete/<%= item.employe_id %>" method="post">
+                <button class="btn btn-warning">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %> 
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('partials/_htmlfoot'); -%>

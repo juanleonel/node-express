@@ -11,7 +11,8 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}/www.js"
+      "program": "${workspaceFolder}/index.js",
+      "runtimeExecutable": "/home/leonel/.nvm/versions/node/v16.17.1/bin/node"
     }
   ]
 }

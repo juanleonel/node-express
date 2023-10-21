@@ -2,10 +2,9 @@ import mysqlPromise from 'mysql2/promise';
 
 import { configuration } from './configuration.js';
 
-const pool = await mysqlPromise.createPool(configuration);
+const connectionPool = await mysqlPromise.createPool(configuration);
 
-
-pool.getConnection((err, connection) => {
+connectionPool.getConnection((err, connection) => {
   if (err) {
     if (err.code === 'PROTOCOL_CONNECTION_LOST') {
       console.error('Database connection was closed.')
@@ -16,7 +15,7 @@ pool.getConnection((err, connection) => {
     if (err.code === 'ECONNREFUSED') {
       console.error('Database connection was refused.')
     } else {
-      console.log(err);
+      console.log(err)
     }
   }
 
@@ -25,4 +24,4 @@ pool.getConnection((err, connection) => {
   return
 })
 
-export default pool;
+export default connectionPool;

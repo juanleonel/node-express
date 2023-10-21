@@ -1,0 +1,33 @@
+<%- include('partials/_htmlhead'); -%>
+  <div class="container">
+    <h1>
+      <%= title %>
+    </h1>
+    <div class="row">
+      <div class="col col-md-12">
+        <form id="form-employe" method="POST" action="/edit/<%= data?.employe_id %>">
+          <input id="employe_id" name="employe_id" type="hidden" value="<%= data?.employe_id %>">
+          <div class="mb-3">
+            <label class="form-label" for="name">name</label>
+            <input class="form-control" type="text" id="name" name="name" value="<%= data?.name %>" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="last_name">Last name</label>
+            <input class="form-control" type="text" id="last_name" name="last_name" value="<%= data?.last_name %>" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="job">job</label>
+            <input  class="form-control"type="text" id="job" name="job" value="<%= data?.job %>" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="like_node">like Node.js?</label>
+            <input type="checkbox" id="like_node" name="like_node" value="yes" <% if (data?.like_node) { %> checked<% } %> />
+          </div>
+          <input type="hidden" name="date" value="<%= new Date(); %>" />
+          <button class="btn btn-primary" id="btn-submit">submit</button>
+          <a class="btn btn-warning" href="/">Back</a>
+        </form>
+      </div>
+    </div>
+  </div>
+<%- include('partials/_htmlfoot'); -%>
