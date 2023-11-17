@@ -1,15 +1,15 @@
 import express from 'express'
-import compress from 'compression'
-import { dirname, sep} from 'path'
+// import compress from 'compression'
+import { dirname, sep } from 'path'
 import { fileURLToPath } from 'url'
-import compression from 'compression'
-import dotenv from 'dotenv';
+// import compression from 'compression'
+import dotenv from 'dotenv'
 
 import { createEmploye, deleteEmploye, getAllEmploye, getEmployeById, updateEmploye } from './src/repository/employe.repository.js'
 import { isIdValid, toBoolean } from './src/utils/utils.js'
 
-dotenv.config();
-const __dirname = dirname(fileURLToPath(import.meta.url)) + sep;
+dotenv.config()
+const __dirname = dirname(fileURLToPath(import.meta.url)) + sep
 
 const cfg = {
   port: process.env.PORTC || 3000,
@@ -20,11 +20,11 @@ const cfg = {
   }
 }
 
-const app = express();
-app.set('view engine', 'ejs');
-app.set('views', cfg.dir.views);
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(cfg.dir.static));
+const app = express()
+app.set('view engine', 'ejs')
+app.set('views', cfg.dir.views)
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static(cfg.dir.static))
 
 // app.use(compression());
 // app.use( function(req, res, next) {
@@ -35,7 +35,6 @@ app.use(express.static(cfg.dir.static));
 // app.get('/', (req, res) => {
 //   res.render('message', { title: 'Hello world!'});
 // });
-
 app.post('/add', async (req, res) => {
   try {
     const data = req.body
@@ -75,8 +74,8 @@ app.get('/edit/:id', async (req, res) => {
     const data = await getEmployeById(id)
 
     return res.render('edit', {
-      title: 'Edit ' + data.name ,
-      data: data
+      data: data,
+      title: 'Edit ' + data.name
     })
   } catch (error) {
     return res.render('error', {
@@ -98,7 +97,7 @@ app.post('/edit/:id', async (req, res) => {
       employe_id: id
     }
 
-     await updateEmploye(prossesData)
+    await updateEmploye(prossesData)
 
     return res.redirect('/')
   } catch (error) {
@@ -136,13 +135,11 @@ app.get('/', async (req, res) => {
 })
 
 app.get('/hello/', (req, res) => {
-  res.render('message', { title: 'Hello again!'})
+  res.render('message', { title: 'Hello again!' })
 })
 
-
-
 app.use((req, res) => {
-  res.status(404).render('message', { title: 'Not found'})
+  res.status(404).render('message', { title: 'Not found' })
 })
 
 app.listen(cfg.port, () => {

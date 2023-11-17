@@ -4,22 +4,22 @@ import { toArrayModel, toModel } from '../mapper/employe.mapper.js'
 const getAllEmploye = async () => {
   try {
     const sql = 'SELECT * FROM employes'
-    const [row, d] = await connectionPool.query(sql)
+    const [row] = await connectionPool.query(sql)
 
     return toArrayModel(row)
   } catch (error) {
-    throw Error('Error al obtener los datos - ' + JSON.stringify(error))
+    throw Error('Error getting employe information - ' + JSON.stringify(error))
   }
 }
 
 const getEmployeById = async (id) => {
   try {
     const sql = 'SELECT * FROM employes WHERE employe_id = ?'
-    const [row, d] = await connectionPool.query(sql, [id])
+    const [row] = await connectionPool.query(sql, [id])
 
     return toModel(row[0])
   } catch (error) {
-    throw Error('Error al obtener los datos - ' + JSON.stringify(error))
+    throw Error('Error getting employe information - ' + JSON.stringify(error))
   }
 }
 
@@ -31,7 +31,7 @@ const updateEmploye = async (data) => {
 
     return rows
   } catch (error) {
-    throw Error('Error al obtener los datos - ' + JSON.stringify(error))
+    throw Error('Error updating employe information - ' + JSON.stringify(error))
   }
 }
 
@@ -43,7 +43,7 @@ const createEmploye = async (data) => {
 
     return rows
   } catch (error) {
-    throw Error('Error al persister los datos - ' + JSON.stringify(error))
+    throw Error('Error while to persist employe  - ' + JSON.stringify(error))
   }
 }
 
@@ -55,7 +55,7 @@ const deleteEmploye = async (id) => {
 
     return rows
   } catch (error) {
-    throw Error('Error al persister los datos - ' + JSON.stringify(error))
+    throw Error('Error while to delete employe - ' + JSON.stringify(error))
   }
 }
 
